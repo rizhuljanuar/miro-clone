@@ -15,6 +15,16 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::post('/projects', 'createProject');
         Route::put('/projects', 'updateProject');
     });
+
+    Route::controller(App\Http\Controllers\Project\ProjectBoardController::class)->group(function () {
+
+        Route::post('/mini_text_editors', 'createOrUpdateMiniTextEditor');
+        Route::post('/sticky_notes',  'createOrUpdateStickyNote');
+        Route::post('/drawings',  'createOrUpdateDrawing');
+        Route::post('/text_captions',  'createOrUpdateTextCaption');
+        Route::get('/project_boards',  'projectBoardData');
+        Route::post('/joinees',  'addJoinees');
+    });
 });
 
 Route::get('/user', function (Request $request) {
